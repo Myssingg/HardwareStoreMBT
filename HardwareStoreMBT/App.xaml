@@ -1,0 +1,78 @@
+﻿<Application x:Class="HardwareStoreMBT.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HardwareStoreMBT"
+             StartupUri="RoleSelectWindow.xaml">
+    <Application.Resources>
+        <!-- Цвета -->
+        <SolidColorBrush x:Key="PrimaryPurple" Color="#6A1B9A"/>
+        <SolidColorBrush x:Key="AccentPurple"  Color="#9C27B0"/>
+        <SolidColorBrush x:Key="LightPurple"   Color="#E1BEE7"/>
+        <SolidColorBrush x:Key="WindowBg"      Color="#FAFAFA"/>
+        <SolidColorBrush x:Key="DarkText"      Color="#212121"/>
+        <SolidColorBrush x:Key="LightText"     Color="#FFFFFF"/>
+
+        <!-- Кнопка -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryPurple}"/>
+            <Setter Property="Foreground" Value="{StaticResource LightText}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource AccentPurple}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Текстовые поля -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource LightPurple}"/>
+            <Setter Property="Foreground" Value="{StaticResource DarkText}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryPurple}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="{StaticResource LightPurple}"/>
+            <Setter Property="Foreground" Value="{StaticResource DarkText}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryPurple}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource WindowBg}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryPurple}"/>
+            <Setter Property="RowBackground" Value="#FFFFFF"/>
+            <Setter Property="AlternatingRowBackground" Value="{StaticResource LightPurple}"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+        </Style>
+
+        <!-- Фон окна -->
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{StaticResource WindowBg}"/>
+        </Style>
+    </Application.Resources>
+</Application>

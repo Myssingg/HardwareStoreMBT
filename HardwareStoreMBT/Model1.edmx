@@ -1,0 +1,1311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HardwareStoreMBTModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="100" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="passwordHash" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="passwordHash" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="patronymic" Type="nvarchar" MaxLength="100" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="manufacturers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderDateTime" Type="datetime" Nullable="false" />
+          <Property Name="summ" Type="float" Nullable="false" />
+          <Property Name="paymentDateTime" Type="nchar" MaxLength="10" />
+          <Property Name="paymentMethodId" Type="int" Nullable="false" />
+          <Property Name="paymentStatusId" Type="int" Nullable="false" />
+          <Property Name="clientId" Type="int" Nullable="false" />
+          <Property Name="orderStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paymentMethods">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paymentStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="categoryId" Type="int" Nullable="false" />
+          <Property Name="manufacturerId" Type="int" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productsInOrder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productPrice" Type="float" Nullable="false" />
+          <Property Name="productCount" Type="int" Nullable="false" />
+          <Property Name="orderId" Type="int" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productsInSupply">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productCount" Type="int" Nullable="false" />
+          <Property Name="purchasePrice" Type="float" Nullable="false" />
+          <Property Name="supplyId" Type="int" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="relevanceStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="suppliers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="supplierId" Type="int" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_categories_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="categories" Type="Self.categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="categories">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clients_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="clients" Type="Self.clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clients">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_manufacturers_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="0..1" />
+          <End Role="manufacturers" Type="Self.manufacturers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manufacturers">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_clients">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="clientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_orderStatuses">
+          <End Role="orderStatuses" Type="Self.orderStatuses" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orderStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="orderStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_paymentMethods">
+          <End Role="paymentMethods" Type="Self.paymentMethods" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentMethods">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="paymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_paymentStatuses">
+          <End Role="paymentStatuses" Type="Self.paymentStatuses" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="paymentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderStatuses_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="orderStatuses" Type="Self.orderStatuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orderStatuses">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentMethods_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="paymentMethods" Type="Self.paymentMethods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentMethods">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentStatuses_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="paymentStatuses" Type="Self.paymentStatuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentStatuses">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_manufactureres">
+          <End Role="manufacturers" Type="Self.manufacturers" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manufacturers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="manufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="productsInOrder" Type="Self.productsInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInOrder">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInOrder_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="productsInOrder" Type="Self.productsInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInOrder">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInSupply_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="productsInSupply" Type="Self.productsInSupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInSupply">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInSupply_supplies">
+          <End Role="supplies" Type="Self.supplies" Multiplicity="1" />
+          <End Role="productsInSupply" Type="Self.productsInSupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInSupply">
+              <PropertyRef Name="supplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="roles" Type="Self.roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_suppliers_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="suppliers" Type="Self.suppliers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="suppliers">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_suppliers">
+          <End Role="suppliers" Type="Self.suppliers" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="suppliers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="supplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HardwareStoreMBTModelContainer">
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="manufacturers" EntityType="Self.manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderStatuses" EntityType="Self.orderStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paymentMethods" EntityType="Self.paymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paymentStatuses" EntityType="Self.paymentStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productsInOrder" EntityType="Self.productsInOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productsInSupply" EntityType="Self.productsInSupply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="relevanceStatuses" EntityType="Self.relevanceStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplies" EntityType="Self.supplies" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_categories_relevanceStatuses" Association="Self.FK_categories_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="categories" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clients_relevanceStatuses" Association="Self.FK_clients_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="clients" EntitySet="clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_relevanceStatuses" Association="Self.FK_employees_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_roles" Association="Self.FK_employees_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_manufacturers_relevanceStatuses" Association="Self.FK_manufacturers_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="manufacturers" EntitySet="manufacturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_clients" Association="Self.FK_orders_clients">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_orderStatuses" Association="Self.FK_orders_orderStatuses">
+            <End Role="orderStatuses" EntitySet="orderStatuses" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_paymentMethods" Association="Self.FK_orders_paymentMethods">
+            <End Role="paymentMethods" EntitySet="paymentMethods" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_paymentStatuses" Association="Self.FK_orders_paymentStatuses">
+            <End Role="paymentStatuses" EntitySet="paymentStatuses" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderStatuses_relevanceStatuses" Association="Self.FK_orderStatuses_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="orderStatuses" EntitySet="orderStatuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentMethods_relevanceStatuses" Association="Self.FK_paymentMethods_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="paymentMethods" EntitySet="paymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentStatuses_relevanceStatuses" Association="Self.FK_paymentStatuses_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="paymentStatuses" EntitySet="paymentStatuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_manufactureres" Association="Self.FK_products_manufactureres">
+            <End Role="manufacturers" EntitySet="manufacturers" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_relevanceStatuses" Association="Self.FK_products_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInOrder_orders" Association="Self.FK_productsInOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="productsInOrder" EntitySet="productsInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInOrder_products" Association="Self.FK_productsInOrder_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="productsInOrder" EntitySet="productsInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInSupply_products" Association="Self.FK_productsInSupply_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="productsInSupply" EntitySet="productsInSupply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInSupply_supplies" Association="Self.FK_productsInSupply_supplies">
+            <End Role="supplies" EntitySet="supplies" />
+            <End Role="productsInSupply" EntitySet="productsInSupply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_relevanceStatuses" Association="Self.FK_roles_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_suppliers_relevanceStatuses" Association="Self.FK_suppliers_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="suppliers" EntitySet="suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_employees" Association="Self.FK_supplies_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_suppliers" Association="Self.FK_supplies_suppliers">
+            <End Role="suppliers" EntitySet="suppliers" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HardwareStoreMBTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_categories_relevanceStatuses" FromRole="categories" ToRole="relevanceStatuses" />
+          <NavigationProperty Name="products" Relationship="Self.FK_products_categories" FromRole="categories" ToRole="products" />
+        </EntityType>
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="passwordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_clients_relevanceStatuses" FromRole="clients" ToRole="relevanceStatuses" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_clients" FromRole="clients" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="passwordHash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_employees_relevanceStatuses" FromRole="employees" ToRole="relevanceStatuses" />
+          <NavigationProperty Name="roles" Relationship="Self.FK_employees_roles" FromRole="employees" ToRole="roles" />
+          <NavigationProperty Name="supplies" Relationship="Self.FK_supplies_employees" FromRole="employees" ToRole="supplies" />
+        </EntityType>
+        <EntityType Name="manufacturers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_manufacturers_relevanceStatuses" FromRole="manufacturers" ToRole="relevanceStatuses" />
+          <NavigationProperty Name="products" Relationship="Self.FK_products_manufactureres" FromRole="manufacturers" ToRole="products" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="summ" Type="Double" Nullable="false" />
+          <Property Name="paymentDateTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="paymentMethodId" Type="Int32" Nullable="false" />
+          <Property Name="paymentStatusId" Type="Int32" Nullable="false" />
+          <Property Name="clientId" Type="Int32" Nullable="false" />
+          <Property Name="orderStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="clients" Relationship="Self.FK_orders_clients" FromRole="orders" ToRole="clients" />
+          <NavigationProperty Name="orderStatuses" Relationship="Self.FK_orders_orderStatuses" FromRole="orders" ToRole="orderStatuses" />
+          <NavigationProperty Name="paymentMethods" Relationship="Self.FK_orders_paymentMethods" FromRole="orders" ToRole="paymentMethods" />
+          <NavigationProperty Name="paymentStatuses" Relationship="Self.FK_orders_paymentStatuses" FromRole="orders" ToRole="paymentStatuses" />
+          <NavigationProperty Name="productsInOrder" Relationship="Self.FK_productsInOrder_orders" FromRole="orders" ToRole="productsInOrder" />
+        </EntityType>
+        <EntityType Name="orderStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_orderStatuses" FromRole="orderStatuses" ToRole="orders" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_orderStatuses_relevanceStatuses" FromRole="orderStatuses" ToRole="relevanceStatuses" />
+        </EntityType>
+        <EntityType Name="paymentMethods">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_paymentMethods" FromRole="paymentMethods" ToRole="orders" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_paymentMethods_relevanceStatuses" FromRole="paymentMethods" ToRole="relevanceStatuses" />
+        </EntityType>
+        <EntityType Name="paymentStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_orders_paymentStatuses" FromRole="paymentStatuses" ToRole="orders" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_paymentStatuses_relevanceStatuses" FromRole="paymentStatuses" ToRole="relevanceStatuses" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="manufacturerId" Type="Int32" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="categories" Relationship="Self.FK_products_categories" FromRole="products" ToRole="categories" />
+          <NavigationProperty Name="manufacturers" Relationship="Self.FK_products_manufactureres" FromRole="products" ToRole="manufacturers" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_products_relevanceStatuses" FromRole="products" ToRole="relevanceStatuses" />
+          <NavigationProperty Name="productsInOrder" Relationship="Self.FK_productsInOrder_products" FromRole="products" ToRole="productsInOrder" />
+          <NavigationProperty Name="productsInSupply" Relationship="Self.FK_productsInSupply_products" FromRole="products" ToRole="productsInSupply" />
+        </EntityType>
+        <EntityType Name="productsInOrder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productPrice" Type="Double" Nullable="false" />
+          <Property Name="productCount" Type="Int32" Nullable="false" />
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_productsInOrder_orders" FromRole="productsInOrder" ToRole="orders" />
+          <NavigationProperty Name="products" Relationship="Self.FK_productsInOrder_products" FromRole="productsInOrder" ToRole="products" />
+        </EntityType>
+        <EntityType Name="productsInSupply">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productCount" Type="Int32" Nullable="false" />
+          <Property Name="purchasePrice" Type="Double" Nullable="false" />
+          <Property Name="supplyId" Type="Int32" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK_productsInSupply_products" FromRole="productsInSupply" ToRole="products" />
+          <NavigationProperty Name="supplies" Relationship="Self.FK_productsInSupply_supplies" FromRole="productsInSupply" ToRole="supplies" />
+        </EntityType>
+        <EntityType Name="relevanceStatuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="categories" Relationship="Self.FK_categories_relevanceStatuses" FromRole="relevanceStatuses" ToRole="categories" />
+          <NavigationProperty Name="clients" Relationship="Self.FK_clients_relevanceStatuses" FromRole="relevanceStatuses" ToRole="clients" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employees_relevanceStatuses" FromRole="relevanceStatuses" ToRole="employees" />
+          <NavigationProperty Name="manufacturers" Relationship="Self.FK_manufacturers_relevanceStatuses" FromRole="relevanceStatuses" ToRole="manufacturers" />
+          <NavigationProperty Name="orderStatuses" Relationship="Self.FK_orderStatuses_relevanceStatuses" FromRole="relevanceStatuses" ToRole="orderStatuses" />
+          <NavigationProperty Name="paymentMethods" Relationship="Self.FK_paymentMethods_relevanceStatuses" FromRole="relevanceStatuses" ToRole="paymentMethods" />
+          <NavigationProperty Name="paymentStatuses" Relationship="Self.FK_paymentStatuses_relevanceStatuses" FromRole="relevanceStatuses" ToRole="paymentStatuses" />
+          <NavigationProperty Name="products" Relationship="Self.FK_products_relevanceStatuses" FromRole="relevanceStatuses" ToRole="products" />
+          <NavigationProperty Name="roles" Relationship="Self.FK_roles_relevanceStatuses" FromRole="relevanceStatuses" ToRole="roles" />
+          <NavigationProperty Name="suppliers" Relationship="Self.FK_suppliers_relevanceStatuses" FromRole="relevanceStatuses" ToRole="suppliers" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_employees_roles" FromRole="roles" ToRole="employees" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_roles_relevanceStatuses" FromRole="roles" ToRole="relevanceStatuses" />
+        </EntityType>
+        <EntityType Name="suppliers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="relevanceStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="relevanceStatuses" Relationship="Self.FK_suppliers_relevanceStatuses" FromRole="suppliers" ToRole="relevanceStatuses" />
+          <NavigationProperty Name="supplies" Relationship="Self.FK_supplies_suppliers" FromRole="suppliers" ToRole="supplies" />
+        </EntityType>
+        <EntityType Name="supplies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="supplierId" Type="Int32" Nullable="false" />
+          <Property Name="employeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employees" Relationship="Self.FK_supplies_employees" FromRole="supplies" ToRole="employees" />
+          <NavigationProperty Name="productsInSupply" Relationship="Self.FK_productsInSupply_supplies" FromRole="supplies" ToRole="productsInSupply" />
+          <NavigationProperty Name="suppliers" Relationship="Self.FK_supplies_suppliers" FromRole="supplies" ToRole="suppliers" />
+        </EntityType>
+        <Association Name="FK_categories_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="categories" Type="Self.categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="categories">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clients_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="clients" Type="Self.clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clients">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_clients">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="clientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employees_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_employees">
+          <End Role="employees" Type="Self.employees" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_manufacturers_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="0..1" />
+          <End Role="manufacturers" Type="Self.manufacturers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manufacturers">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_manufactureres">
+          <End Role="manufacturers" Type="Self.manufacturers" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manufacturers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="manufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_orderStatuses">
+          <End Role="orderStatuses" Type="Self.orderStatuses" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orderStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="orderStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_paymentMethods">
+          <End Role="paymentMethods" Type="Self.paymentMethods" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentMethods">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="paymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orders_paymentStatuses">
+          <End Role="paymentStatuses" Type="Self.paymentStatuses" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paymentStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="paymentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInOrder_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="productsInOrder" Type="Self.productsInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInOrder">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderStatuses_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="orderStatuses" Type="Self.orderStatuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orderStatuses">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentMethods_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="paymentMethods" Type="Self.paymentMethods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentMethods">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_paymentStatuses_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="paymentStatuses" Type="Self.paymentStatuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paymentStatuses">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_products_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInOrder_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="productsInOrder" Type="Self.productsInOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInOrder">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInSupply_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="productsInSupply" Type="Self.productsInSupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInSupply">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productsInSupply_supplies">
+          <End Role="supplies" Type="Self.supplies" Multiplicity="1" />
+          <End Role="productsInSupply" Type="Self.productsInSupply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productsInSupply">
+              <PropertyRef Name="supplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="roles" Type="Self.roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_suppliers_relevanceStatuses">
+          <End Role="relevanceStatuses" Type="Self.relevanceStatuses" Multiplicity="1" />
+          <End Role="suppliers" Type="Self.suppliers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relevanceStatuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="suppliers">
+              <PropertyRef Name="relevanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_suppliers">
+          <End Role="suppliers" Type="Self.suppliers" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="suppliers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="supplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HardwareStoreMBTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="Self.categories" />
+          <EntitySet Name="clients" EntityType="Self.clients" />
+          <EntitySet Name="employees" EntityType="Self.employees" />
+          <EntitySet Name="manufacturers" EntityType="Self.manufacturers" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="orderStatuses" EntityType="Self.orderStatuses" />
+          <EntitySet Name="paymentMethods" EntityType="Self.paymentMethods" />
+          <EntitySet Name="paymentStatuses" EntityType="Self.paymentStatuses" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="productsInOrder" EntityType="Self.productsInOrder" />
+          <EntitySet Name="productsInSupply" EntityType="Self.productsInSupply" />
+          <EntitySet Name="relevanceStatuses" EntityType="Self.relevanceStatuses" />
+          <EntitySet Name="roles" EntityType="Self.roles" />
+          <EntitySet Name="suppliers" EntityType="Self.suppliers" />
+          <EntitySet Name="supplies" EntityType="Self.supplies" />
+          <AssociationSet Name="FK_categories_relevanceStatuses" Association="Self.FK_categories_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="categories" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clients_relevanceStatuses" Association="Self.FK_clients_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="clients" EntitySet="clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_clients" Association="Self.FK_orders_clients">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_relevanceStatuses" Association="Self.FK_employees_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employees_roles" Association="Self.FK_employees_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_employees" Association="Self.FK_supplies_employees">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_manufacturers_relevanceStatuses" Association="Self.FK_manufacturers_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="manufacturers" EntitySet="manufacturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_manufactureres" Association="Self.FK_products_manufactureres">
+            <End Role="manufacturers" EntitySet="manufacturers" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_orderStatuses" Association="Self.FK_orders_orderStatuses">
+            <End Role="orderStatuses" EntitySet="orderStatuses" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_paymentMethods" Association="Self.FK_orders_paymentMethods">
+            <End Role="paymentMethods" EntitySet="paymentMethods" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orders_paymentStatuses" Association="Self.FK_orders_paymentStatuses">
+            <End Role="paymentStatuses" EntitySet="paymentStatuses" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInOrder_orders" Association="Self.FK_productsInOrder_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="productsInOrder" EntitySet="productsInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderStatuses_relevanceStatuses" Association="Self.FK_orderStatuses_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="orderStatuses" EntitySet="orderStatuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentMethods_relevanceStatuses" Association="Self.FK_paymentMethods_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="paymentMethods" EntitySet="paymentMethods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_paymentStatuses_relevanceStatuses" Association="Self.FK_paymentStatuses_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="paymentStatuses" EntitySet="paymentStatuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_products_relevanceStatuses" Association="Self.FK_products_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInOrder_products" Association="Self.FK_productsInOrder_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="productsInOrder" EntitySet="productsInOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInSupply_products" Association="Self.FK_productsInSupply_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="productsInSupply" EntitySet="productsInSupply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productsInSupply_supplies" Association="Self.FK_productsInSupply_supplies">
+            <End Role="supplies" EntitySet="supplies" />
+            <End Role="productsInSupply" EntitySet="productsInSupply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_relevanceStatuses" Association="Self.FK_roles_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="roles" EntitySet="roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_suppliers_relevanceStatuses" Association="Self.FK_suppliers_relevanceStatuses">
+            <End Role="relevanceStatuses" EntitySet="relevanceStatuses" />
+            <End Role="suppliers" EntitySet="suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_suppliers" Association="Self.FK_supplies_suppliers">
+            <End Role="suppliers" EntitySet="suppliers" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HardwareStoreMBTModelContainer" CdmEntityContainer="HardwareStoreMBTEntities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.categories">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.clients">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.employees">
+              <MappingFragment StoreEntitySet="employees">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manufacturers">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.manufacturers">
+              <MappingFragment StoreEntitySet="manufacturers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="orderDateTime" ColumnName="orderDateTime" />
+                <ScalarProperty Name="summ" ColumnName="summ" />
+                <ScalarProperty Name="paymentDateTime" ColumnName="paymentDateTime" />
+                <ScalarProperty Name="paymentMethodId" ColumnName="paymentMethodId" />
+                <ScalarProperty Name="paymentStatusId" ColumnName="paymentStatusId" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="orderStatusId" ColumnName="orderStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderStatuses">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.orderStatuses">
+              <MappingFragment StoreEntitySet="orderStatuses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymentMethods">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.paymentMethods">
+              <MappingFragment StoreEntitySet="paymentMethods">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paymentStatuses">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.paymentStatuses">
+              <MappingFragment StoreEntitySet="paymentStatuses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="manufacturerId" ColumnName="manufacturerId" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productsInOrder">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.productsInOrder">
+              <MappingFragment StoreEntitySet="productsInOrder">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="productCount" ColumnName="productCount" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productsInSupply">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.productsInSupply">
+              <MappingFragment StoreEntitySet="productsInSupply">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="productCount" ColumnName="productCount" />
+                <ScalarProperty Name="purchasePrice" ColumnName="purchasePrice" />
+                <ScalarProperty Name="supplyId" ColumnName="supplyId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relevanceStatuses">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.relevanceStatuses">
+              <MappingFragment StoreEntitySet="relevanceStatuses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suppliers">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.suppliers">
+              <MappingFragment StoreEntitySet="suppliers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="relevanceStatusId" ColumnName="relevanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplies">
+            <EntityTypeMapping TypeName="HardwareStoreMBTModel.supplies">
+              <MappingFragment StoreEntitySet="supplies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="supplierId" ColumnName="supplierId" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

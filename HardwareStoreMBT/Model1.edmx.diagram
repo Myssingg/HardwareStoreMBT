@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b047021ee2324de7b4a71d12d97962c5" Name="Diagram1">
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.categories" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.clients" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.employees" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.manufacturers" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.orders" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.orderStatuses" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.paymentMethods" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.paymentStatuses" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.products" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.productsInOrder" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.productsInSupply" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.relevanceStatuses" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.roles" Width="1.5" PointX="3" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.suppliers" Width="1.5" PointX="3" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HardwareStoreMBTModel.supplies" Width="1.5" PointX="7.5" PointY="25.5" IsExpanded="true" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_categories_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_products_categories" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_clients_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_orders_clients" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_employees_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_employees_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_supplies_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_manufacturers_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_products_manufactureres" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_orders_orderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_orders_paymentMethods" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_orders_paymentStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_productsInOrder_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_orderStatuses_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_paymentMethods_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_paymentStatuses_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_products_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_productsInOrder_products" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_productsInSupply_products" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_productsInSupply_supplies" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_roles_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_suppliers_relevanceStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="HardwareStoreMBTModel.FK_supplies_suppliers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
